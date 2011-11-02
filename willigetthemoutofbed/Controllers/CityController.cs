@@ -12,25 +12,14 @@ namespace willigetthemoutofbed.Controllers
         //
         // GET: /City/
 
-        public ActionResult Lookup(string id)
+        public ActionResult Lookup(string zone)
         {
-            ViewBag.City = id;
 
-            var availableTimeZones = TimeZoneInfo.GetSystemTimeZones();
-            Dictionary<string, TimeZoneInfo> data = new Dictionary<string, TimeZoneInfo>();
+            ViewBag.City = zone;
 
-            foreach (var zone in availableTimeZones)
-            {
-                var names = zone.ToString().Split(')')[1];
-                foreach (var name in names.Split(','))
-                {
-                    data[name.ToLower().Trim()] = zone;
-                }
-            }
+            var givenZone = (from availableZone in TzTimeZone.ZoneList where availableZone.ZoneName == zone select availableZone).Single();
 
-            var givenZone = data[id.ToLower()];
-
-            ViewBag.GivenZone = givenZone;
+            ViewBag.GivenZone = TzTimeZone.GetTimeZone(givenZone.ZoneName);
 
             return View();
         }

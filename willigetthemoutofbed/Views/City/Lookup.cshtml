@@ -6,13 +6,6 @@
 <h2>Lookup</h2>
 
 <p>
-    It is currently: @TimeZoneInfo.ConvertTime(DateTime.Now, ViewBag.GivenZone)
+    It is currently: @ViewBag.GivenZone.Now.DateTimeLocal.ToString()
     
 </p>
-
-<ul>
-    @foreach (var zone in TimeZoneInfo.GetSystemTimeZones())
-    {
-        <ul>@TimeZoneInfo.ConvertTime(DateTime.Now, zone) <span id="zonename">@zone.DisplayName</span></ul>
-    }
-</ul>
