@@ -15,16 +15,6 @@ namespace willigetthemoutofbed.Controllers
 
         public ActionResult Index()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("var zones = [\n");
-            foreach (var zone in PublicDomain.TzTimeZone.AllZoneNames)
-            {
-                sb.Append("\"" + zone + "\",\n");
-            }
-            sb.Append("]");
-
-            ViewBag.Zones = sb.ToString();
-
             return View();
         }
 
