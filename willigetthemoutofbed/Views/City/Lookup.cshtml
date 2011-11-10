@@ -3,7 +3,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>
-    It is currently: @ViewBag.GivenZone.Now.DateTimeLocal.ToString()
+
+
+@if (ViewBag.Result)
+ {
     
-</p>
+        <div class="hero-unit">
+     <h1 id="answer">YES</h1>
+     </div>
+    
+ }
+ else
+ {
+    <div class="hero-unit">
+     <h1 id="answer">MAYBE NOT?</h1>
+     </div>
+ }
+
+ <div class="row">
+ <div class="span-one-half">
+<p>It is currently: @ViewBag.GivenZone.Now.DateTimeLocal.ToString()</p>
+</div>
+</div>

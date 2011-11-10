@@ -19,7 +19,14 @@ namespace willigetthemoutofbed.Controllers
 
             var givenZone = (from availableZone in TzTimeZone.ZoneList where availableZone.ZoneName == zone select availableZone).Single();
 
-            ViewBag.GivenZone = TzTimeZone.GetTimeZone(givenZone.ZoneName);
+            var timeZone = TzTimeZone.GetTimeZone(givenZone.ZoneName);
+            ViewBag.givenZone = timeZone;
+
+            ViewBag.Result = false;
+            if (timeZone.Now.DateTimeLocal.Hour < 8 || timeZone.Now.DateTimeLocal.Hour > 21)
+            {
+                ViewBag.Result = true;
+            }
 
             return View();
         }
