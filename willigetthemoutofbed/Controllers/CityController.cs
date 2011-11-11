@@ -21,42 +21,22 @@ namespace willigetthemoutofbed.Controllers
 
             var lookupZone = this.LookupCity(
                 zone, HttpContext.Server.MapPath("~/Content/converted.csv"));
-            
+
             // TODO: refactor this
-            if (lookupZone.Count() == 1)
+
+            var multiples = new Dictionary<TzTimeZone, bool>();
+
+            foreach (var zoneResult in lookupZone)
             {
-                var givenZone = lookupZone[0];
-                ViewBag.givenZone = givenZone;
-                ViewBag.Result = false;
-                if (givenZone.Now.DateTimeLocal.Hour < 8 || givenZone.Now.DateTimeLocal.Hour > 21)
+                var result = false;
+                if (zoneResult.Now.DateTimeLocal.Hour < 8 || zoneResult.Now.DateTimeLocal.Hour > 21)
                 {
-                    ViewBag.Result = true;
+                    result = true;
                 }
-
-                ViewBag.Multiple = false;
-
-                return View();
-            }
-            if (lookupZone.Count() > 1)
-            {
-                ViewBag.Multiple = true;
-
-                var multiples = new Dictionary<TzTimeZone, bool>();
-
-                foreach (var zoneResult in lookupZone)
-                {
-                    var result = false;
-                    if (zoneResult.Now.DateTimeLocal.Hour < 8 || zoneResult.Now.DateTimeLocal.Hour > 21)
-                    {
-                        result = true;
-                    }
-                    multiples[zoneResult] = result;
-                }
-
-                ViewBag.MultipleResults = multiples;
-                return this.View("MultipleLookup");
+                multiples[zoneResult] = result;
             }
 
+            ViewBag.Results = multiples;
             return this.View();
         }
 

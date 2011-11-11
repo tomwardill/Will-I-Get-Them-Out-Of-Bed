@@ -1,27 +1,40 @@
 ﻿@{
-    ViewBag.Title = "Lookup";
+    ViewBag.Title = ViewBag.City + " - what's the time?";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-@if (ViewBag.Result)
- {
-    
-        <div class="hero-unit">
-     <h1 id="answer">YES</h1>
-     </div>
-    
- }
- else
- {
-    <div class="hero-unit">
-     <h1 id="answer">MAYBE NOT?</h1>
-     </div>
- }
-
- <div class="row">
- <div class="span-one-half">
-<p>It is currently: @ViewBag.GivenZone.Now.DateTimeLocal.ToString()</p>
+@if (ViewBag.Results.Count > 1)
+{
+<div class="row">
+    <h1>There are multiple cities with that name, here are the results for all of them</h1>
 </div>
-</div>
+}
+
+@foreach (var result in ViewBag.Results)
+{
+    <div class="row">
+        <h2>@result.Key.StandardName</h2>
+        <h3>@ViewBag.City</h3>
+    </div>
+    
+    if (result.Value)
+     {
+
+         <div class="hero-unit">
+             <h1 id="answer">YES</h1>
+         </div>
+
+     }
+     else
+     {
+         <div class="hero-unit">
+             <h1 id="answer">MAYBE NOT?</h1>
+         </div>
+     }
+
+    <div class="row">
+        <div class="span-one-half">
+            <p>It is currently: @result.Key.Now.DateTimeLocal.ToString()</p>
+        </div>
+    </div>
+}
