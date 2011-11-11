@@ -20,7 +20,7 @@ namespace willigetthemoutofbed.Controllers
             ViewBag.City = zone;
 
             var lookupZone = this.LookupCity(
-                zone, HttpContext.Server.MapPath("~/App_Data/converted.csv"));
+                zone, HttpContext.Server.MapPath("~/Content/converted.csv"));
 
             if (lookupZone.Count() == 1)
             {
