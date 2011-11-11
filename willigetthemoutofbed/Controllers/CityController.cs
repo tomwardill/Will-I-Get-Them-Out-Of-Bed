@@ -21,7 +21,8 @@ namespace willigetthemoutofbed.Controllers
 
             var lookupZone = this.LookupCity(
                 zone, HttpContext.Server.MapPath("~/Content/converted.csv"));
-
+            
+            // TODO: refactor this
             if (lookupZone.Count() == 1)
             {
                 var givenZone = lookupZone[0];

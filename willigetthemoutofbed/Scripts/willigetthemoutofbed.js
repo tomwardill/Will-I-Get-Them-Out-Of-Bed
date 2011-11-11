@@ -22628,7 +22628,8 @@ $(function () {
 
     ];
     $("#city").autocomplete({
-        source: zones
+        source: zones,
+        minLength: 3
     });
 
 });
