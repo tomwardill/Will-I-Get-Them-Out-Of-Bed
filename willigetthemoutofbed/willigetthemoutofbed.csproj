@@ -139,6 +139,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -151,7 +152,7 @@
     <Content Include="Views\City\Lookup.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\converted.csv" />
+    <Content Include="Content\converted.csv" />
     <Content Include="Views\City\MultipleLookup.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
